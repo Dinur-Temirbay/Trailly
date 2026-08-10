@@ -7,7 +7,7 @@ import { login as loginRequest } from '@/api/auth'
 import { useState } from 'react'
 import { AuthLayout } from '@/components/AuthLayout'
 import { Input } from '@/components/ui/Input'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button/Button'
 
 const loginSchema = z.object({
 	email: z.email('Некорректный email'),

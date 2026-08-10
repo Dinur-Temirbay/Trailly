@@ -7,10 +7,10 @@ import { register as registerRequest } from '@/api/auth'
 import { useState } from 'react'
 import { AuthLayout } from '@/components/AuthLayout'
 import { Input } from '@/components/ui/Input'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/Button/Button'
 
 const registerSchema = z.object({
-	name: z.string().min(1, 'Введите имя').optional(),
+	name: z.string().min(1, 'Введите имя'),
 	email: z.email('Введите корректный email'),
 	password: z.string().min(8, 'Пароль должен быть не менее 8 символов'),
 })
