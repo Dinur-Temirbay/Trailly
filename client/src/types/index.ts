@@ -1,4 +1,4 @@
-export type Category =
+export type TCategory =
 	| 'CAFE'
 	| 'RESTAURANT'
 	| 'MUSEUM'
@@ -9,11 +9,11 @@ export type Category =
 	| 'HOTEL'
 	| 'OTHER'
 
-export interface Place {
+export interface IPlace {
 	id: string
 	externalId: string
 	name: string
-	category: Category
+	category: TCategory
 	description: string | null
 	photoUrl: string | null
 	rating: number | null
@@ -25,17 +25,17 @@ export interface Place {
 	priceLevel: number | null
 }
 
-export interface User {
+export interface IUser {
 	id: string
 	email: string
 	name: string | null
 	avatarUrl: string | null
 }
 
-export interface SavedPlace {
+export interface ISavedPlace {
 	id: string
 	placeId: string
 	notes: string | null
 	createdAt: string
-	place: Place
+	place: IPlace
 }

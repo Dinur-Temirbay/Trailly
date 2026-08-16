@@ -1,6 +1,6 @@
-import type { Category } from '@/types'
+import type { TCategory } from '@/types'
 
-export const categoryLabels: Record<Category, string> = {
+export const categoryLabels: Record<TCategory, string> = {
 	CAFE: 'Кафе',
 	RESTAURANT: 'Рестораны',
 	MUSEUM: 'Музеи',
@@ -12,7 +12,7 @@ export const categoryLabels: Record<Category, string> = {
 	OTHER: 'Другое',
 }
 
-export const categoryOrder: Category[] = [
+export const categoryOrder: TCategory[] = [
 	'CAFE',
 	'RESTAURANT',
 	'MUSEUM',
