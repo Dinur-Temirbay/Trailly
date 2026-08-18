@@ -1,4 +1,4 @@
-import type { TCategory } from '@/types'
+import type { TCategory } from '@/types/place.types'
 
 export const categoryLabels: Record<TCategory, string> = {
 	CAFE: 'Кафе',
