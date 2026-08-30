@@ -1,17 +1,17 @@
 import { createContext, useState } from 'react'
-import type { User } from '../types'
+import type { IUser } from '../types'
 
 interface AuthContextType {
-	user: User | null
+	user: IUser | null
 	isAuth: boolean
-	login: (user: User, token: string) => void
+	login: (user: IUser, token: string) => void
 	logout: () => void
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-	const [user, setUser] = useState<User | null>(() => {
+	const [user, setUser] = useState<IUser | null>(() => {
 		const saved = localStorage.getItem('user')
 		return saved ? JSON.parse(saved) : null
 	})
@@ -20,7 +20,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 		return localStorage.getItem('token')
 	})
 
-	const login = (user: User, token: string) => {
+	const login = (user: IUser, token: string) => {
 		localStorage.setItem('token', token)
 		localStorage.setItem('user', JSON.stringify(user))
 		setUser(user)

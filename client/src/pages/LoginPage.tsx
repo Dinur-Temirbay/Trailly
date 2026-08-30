@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { login as loginRequest } from '@/api/auth'
 import { useState } from 'react'
 import { AuthLayout } from '@/components/AuthLayout'
-import { Input } from '@/components/ui/Input'
+import { Input } from '@/components/ui/Input/Input'
 import { Button } from '@/components/ui/Button/Button'
 
 const loginSchema = z.object({

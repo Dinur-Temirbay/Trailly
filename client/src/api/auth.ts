@@ -1,9 +1,9 @@
 import { API } from './client'
-import type { User } from '@/types'
+import type { IUser } from '@/types'
 
 interface AuthResponse {
 	token: string
-	user: User
+	user: IUser
 }
 
 export async function login(email: string, password: string) {
