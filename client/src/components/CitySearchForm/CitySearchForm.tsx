@@ -8,22 +8,22 @@ const searchSchema = z.object({
 	city: z.string().min(2, 'Введите хотя бы 2 символа'),
 })
 
-type SearchFormValues = z.infer<typeof searchSchema>
+type TSearchFormValues = z.infer<typeof searchSchema>
 
-interface CitySearchFormProps {
+interface ICitySearchFormProps {
 	onSearch: (city: string) => void
 }
 
-export function CitySearchForm({ onSearch }: CitySearchFormProps) {
+export function CitySearchForm({ onSearch }: ICitySearchFormProps) {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<SearchFormValues>({
+	} = useForm<TSearchFormValues>({
 		resolver: zodResolver(searchSchema),
 	})
 
-	const onSubmit = (values: SearchFormValues) => {
+	const onSubmit = (values: TSearchFormValues) => {
 		onSearch(values.city)
 	}
 

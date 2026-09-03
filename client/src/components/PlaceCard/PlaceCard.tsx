@@ -1,3 +1,4 @@
+import { FiMapPin, FiStar } from 'react-icons/fi'
 import {
 	Card,
 	CardContent,
@@ -27,7 +28,7 @@ export function PlaceCard({ place, isSaved, onToggleSave }: PlaceCardProps) {
 					/>
 				) : (
 					<div className='flex h-full w-full items-center justify-center text-muted-foreground'>
-						<MapPin className='h-8 w-8' />
+						<FiMapPin className='h-8 w-8' />
 					</div>
 				)}
 			</div>
@@ -44,7 +45,7 @@ export function PlaceCard({ place, isSaved, onToggleSave }: PlaceCardProps) {
 			<CardContent className='flex items-center gap-2 pt-0'>
 				{place.rating != null && (
 					<span className='flex items-center gap-1 text-sm'>
-						<Star className='h-4 w-4 fill-yellow-400 text-yellow-400' />
+						<FiStar className='h-4 w-4 fill-yellow-400 text-yellow-400' />
 						{place.rating.toFixed(1)}
 					</span>
 				)}

@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { Navbar } from '@/components/Navbar/Navbar'
 import { CitySearchForm } from '@/components/CitySearchForm/CitySearchForm'
 import { useSearchPlaces } from '@/hooks/useSearchPlaces'
+import { PlaceByCategory } from '@/components/PlacesByCategory/PlacesByCategory.tsx'
 
 export function HomePage() {
 	const [city, setCity] = useState('')
-	const { isLoading, isError } = useSearchPlaces(city)
+	const { data: places, isLoading, isError } = useSearchPlaces(city)
 
 	return (
 		<>
@@ -31,7 +32,7 @@ export function HomePage() {
 							Не удалось загрузить места. Попробуйте позже.
 						</p>
 					)}
-					{/* // ! Place the component to display places here */}
+					{places && <PlaceByCategory places={places} />}
 				</div>
 			</div>
 		</>
