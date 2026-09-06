@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Navbar } from '@/components/Navbar/Navbar'
 import { CitySearchForm } from '@/components/CitySearchForm/CitySearchForm'
 import { useSearchPlaces } from '@/hooks/useSearchPlaces'
-import { PlaceByCategory } from '@/components/PlacesByCategory/PlacesByCategory.tsx'
+import { PlacesByCategory } from '@/components/PlacesByCategory/PlacesByCategory.tsx'
 
 export function HomePage() {
 	const [city, setCity] = useState('')
@@ -32,7 +32,7 @@ export function HomePage() {
 							Не удалось загрузить места. Попробуйте позже.
 						</p>
 					)}
-					{places && <PlaceByCategory places={places} />}
+					{places && <PlacesByCategory places={places} />}
 				</div>
 			</div>
 		</>

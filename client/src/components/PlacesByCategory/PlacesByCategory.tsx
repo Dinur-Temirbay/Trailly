@@ -1,5 +1,6 @@
 import { PlaceCard } from '@/components/PlaceCard/PlaceCard'
 import { categoryLabels, categoryOrder } from '@/lib/categories'
+import { useSavedPlaces } from '@/hooks/useSavedPlaces'
 import type { IPlace } from '@/types'
 
 interface PlacesByCategoryProps {
@@ -7,6 +8,8 @@ interface PlacesByCategoryProps {
 }
 
 export function PlacesByCategory({ places }: PlacesByCategoryProps) {
+	const { savedPlaceIds, toggleSave } = useSavedPlaces()
+
 	const grouped = categoryOrder
 		.map(category => ({
 			category,
@@ -31,7 +34,12 @@ export function PlacesByCategory({ places }: PlacesByCategoryProps) {
 					</h2>
 					<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
 						{items.map(place => (
-							<PlaceCard key={place.id} place={place} />
+							<PlaceCard
+								key={place.id}
+								place={place}
+								isSaved={savedPlaceIds.has(place.id)}
+								onToggleSave={() => toggleSave(place.id)}
+							/>
 						))}
 					</div>
 				</section>

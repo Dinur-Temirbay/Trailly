@@ -15,6 +15,9 @@ export function Navbar() {
 				<nav className='flex items-center gap-3'>
 					{user && (
 						<>
+							<Link to='/saved' className='text-sm hover:underline'>
+								Избранное
+							</Link>
 							<span className='text-sm text-muted-foreground'>
 								{user.name || user.email}
 							</span>

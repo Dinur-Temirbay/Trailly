@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { RegisterPage } from '@/pages/RegisterPage'
 import { HomePage } from '@/pages/HomePage'
 import { LoginPage } from '@/pages/LoginPage'
+import { SavedPlacesPage } from '@/pages/SavedPlacesPage'
 import { useAuth } from '@/hooks/useAuth'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -25,6 +26,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<HomePage />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/saved'
+					element={
+						<ProtectedRoute>
+							<SavedPlacesPage />
 						</ProtectedRoute>
 					}
 				/>
