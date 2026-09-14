@@ -1,15 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
 import { Navbar } from '@/components/Navbar/Navbar'
 import { PlaceCard } from '@/components/PlaceCard/PlaceCard'
 import { useSavedPlaces } from '@/hooks/useSavedPlaces'
-import { getSavedPlaces } from '@/api/savedPlaces'
 
 export function SavedPlacesPage() {
-	const { data: savedPlaces, isLoading } = useQuery({
-		queryKey: ['savedPlaces'],
-		queryFn: getSavedPlaces,
-	})
-	const { savedPlaceIds, toggleSave } = useSavedPlaces()
+	const { savedPlaces, savedPlaceIds, toggleSave, isLoading } = useSavedPlaces()
 
 	return (
 		<>
@@ -19,13 +13,13 @@ export function SavedPlacesPage() {
 
 				{isLoading && <p className='text-muted-foreground'>Загрузка...</p>}
 
-				{savedPlaces && savedPlaces.length === 0 && (
+				{!isLoading && savedPlaces.length === 0 && (
 					<p className='text-muted-foreground'>
 						Пока пусто. Найдите места на главной и сохраните понравившиеся.
 					</p>
 				)}
 
-				{savedPlaces && savedPlaces.length > 0 && (
+				{!isLoading && savedPlaces.length > 0 && (
 					<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
 						{savedPlaces.map(saved => (
 							<PlaceCard

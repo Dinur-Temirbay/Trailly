@@ -8,17 +8,17 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(cuid())
-  email        String   @unique
-  name         String   @unique
-  passwordHash     String
+  id           String  @id @default(cuid())
+  email        String  @unique
+  name         String  @unique
+  passwordHash String
   avatarUrl    String?
 
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  savedPlaces  SavedPlace[]
-  collections  Collection[]
+  savedPlaces SavedPlace[]
+  collections Collection[]
 
   @@map("users")
 }
@@ -39,8 +39,8 @@ model Place {
   priceLevel   Int?
   openingHours Json?
 
-  createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   savedBy       SavedPlace[]
   inCollections CollectionPlace[]
@@ -50,15 +50,14 @@ model Place {
   @@map("places")
 }
 
-
 model SavedPlace {
-  id        String   @id @default(cuid())
-  placeId   String
-  notes     String?
+  id      String  @id @default(cuid())
+  placeId String
+  notes   String?
 
-  userId    String @map("user_id")
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  place     Place    @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place  Place  @relation(fields: [placeId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -68,25 +67,25 @@ model SavedPlace {
 }
 
 model Collection {
-  id        String   @id @default(cuid())
-  title     String
-  city      String?
-  isPublic  Boolean  @default(false)
+  id       String  @id @default(cuid())
+  title    String
+  city     String?
+  isPublic Boolean @default(false)
 
-  userId    String @map("user_id")
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  places    CollectionPlace[]
+  places CollectionPlace[]
 
   @@map("collections")
 }
 
 model CollectionPlace {
-  id           String     @id @default(cuid())
-  order        Int        @default(0)
+  id    String @id @default(cuid())
+  order Int    @default(0)
 
   collectionId String
   collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
@@ -99,7 +98,6 @@ model CollectionPlace {
   @@unique([collectionId, placeId])
   @@map("collection_places")
 }
-
 
 enum Category {
   CAFE

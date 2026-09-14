@@ -6,33 +6,21 @@ export function useSavedPlaces() {
 	const { isAuth } = useAuth()
 	const queryClient = useQueryClient()
 
-	const { data: savedPlaces } = useQuery({
+	const { data: savedPlaces = [], isLoading } = useQuery({
 		queryKey: ['savedPlaces'],
 		queryFn: getSavedPlaces,
 		enabled: isAuth,
 	})
 
-	const saveMutation = useMutation({
-		mutationFn: savePlace,
-		onSuccess: () =>
-			queryClient.invalidateQueries({ queryKey: ['savedPlaces'] }),
+	const savedPlaceIds = new Set(savedPlaces.map(sp => sp.placeId))
+
+	const { mutate: toggleSave } = useMutation({
+		mutationFn: (placeId: string) =>
+			savedPlaceIds.has(placeId) ? unsavePlace(placeId) : savePlace(placeId),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['savedPlaces'] })
+		},
 	})
 
-	const unsaveMutation = useMutation({
-		mutationFn: unsavePlace,
-		onSuccess: () =>
-			queryClient.invalidateQueries({ queryKey: ['savedPlaces'] }),
-	})
-
-	const savedPlaceIds = new Set(savedPlaces?.map(sp => sp.placeId))
-
-	const toggleSave = (placeId: string) => {
-		if (savedPlaceIds.has(placeId)) {
-			unsaveMutation.mutate(placeId)
-		} else {
-			saveMutation.mutate(placeId)
-		}
-	}
-
-	return { savedPlaceIds, toggleSave }
+	return { savedPlaces, savedPlaceIds, toggleSave, isLoading }
 }

@@ -12,7 +12,7 @@ import type { IPlace } from '@/types'
 interface PlaceCardProps {
 	place: IPlace
 	isSaved?: boolean
-	onToggleSave?: (place: IPlace) => void
+	onToggleSave?: () => void
 }
 
 export function PlaceCard({ place, isSaved, onToggleSave }: PlaceCardProps) {
@@ -57,7 +57,7 @@ export function PlaceCard({ place, isSaved, onToggleSave }: PlaceCardProps) {
 						variant={isSaved ? 'secondary' : 'outline'}
 						size='sm'
 						className='w-full'
-						onClick={() => onToggleSave(place)}
+						onClick={onToggleSave}
 					>
 						{isSaved ? 'В избранном' : 'Сохранить'}
 					</Button>
